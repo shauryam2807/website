@@ -29,7 +29,7 @@ import styles from "./LabCardGrid.module.css";
 // Keyed by the English label, like LEVELS in LevelBadge. The ids have to be
 // static or `write-translations` has nothing to extract; passing the sidebar
 // value straight to <Translate> leaves the extractor with a runtime expression.
-const DURATIONS = {
+export const DURATIONS = {
   "about 30 minutes": (
     <Translate id="tutorials.lab.duration.30min" description="Lab duration of about 30 minutes">
       about 30 minutes

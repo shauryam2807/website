@@ -19,39 +19,7 @@ import LevelBadge from "./LevelBadge";
 import styles from "./RelatedLabs.module.css";
 import gridStyles from "./LabCardGrid.module.css";
 
-/**
- * Maps raw duration strings from lab frontmatter to translatable React elements.
- * Keeps duration labels consistent with LabCardGridAuto.js and supports i18n.
- *
- * @type {Object<string, React.ReactElement>}
- */
-const DURATIONS = {
-  "about 30 minutes": (
-    <Translate id="tutorials.lab.duration.30min" description="Lab duration of about 30 minutes">
-      about 30 minutes
-    </Translate>
-  ),
-  "about 40 minutes": (
-    <Translate id="tutorials.lab.duration.40min" description="Lab duration of about 40 minutes">
-      about 40 minutes
-    </Translate>
-  ),
-  "about 45 minutes": (
-    <Translate id="tutorials.lab.duration.45min" description="Lab duration of about 45 minutes">
-      about 45 minutes
-    </Translate>
-  ),
-  "about 60 minutes": (
-    <Translate id="tutorials.lab.duration.60min" description="Lab duration of about 60 minutes">
-      about 60 minutes
-    </Translate>
-  ),
-  "about 90 minutes": (
-    <Translate id="tutorials.lab.duration.90min" description="Lab duration of about 90 minutes">
-      about 90 minutes
-    </Translate>
-  ),
-};
+import { DURATIONS } from "./LabCardGridAuto";
 
 /**
  * Renders a "Related Hands-on Labs" card grid at the bottom of doc pages.
@@ -92,7 +60,7 @@ export default function RelatedLabs() {
       };
     })
     .filter(Boolean)
-    .sort((a, b) => b.matchCount - a.matchCount)
+    .sort((a, b) => b.matchCount - a.matchCount || a.key.localeCompare(b.key))
     .slice(0, 4); // Cap to top 4 to avoid long lists of loosely related labs
 
   if (matchedCards.length === 0) {
